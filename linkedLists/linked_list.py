@@ -103,6 +103,7 @@ class LinkedList(object):
             temp = temp.next
         return ispalin
 
+#TODO: Logic is not complete, re work
     def sort_insert(self, node):
         if self.head is None:
             self.insert(node)
