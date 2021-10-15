@@ -1,3 +1,8 @@
+"""
+Time complexity - O(n2)/O(n square)
+Compares the element with previous element and swaps the current element with previous one
+Not so fast sort, better for smaller datasets, expect better performance up until 10,000 elements
+"""
 def insertion_sort_with_swap(A: list) -> list:
     # print("List - ", A)
     for i in range(1, len(A)):
@@ -29,10 +34,10 @@ import time
 A = sample(range(-100, 300), 250)
 B = deepcopy(A)
 tic = time.perf_counter()
-insertion_sort_with_swap(A)
+print(insertion_sort_with_swap(A))
 toc = time.perf_counter()
 print(f"Insertion Sort with swap, ran for -  {toc - tic:0.4f} seconds")
 tic = time.perf_counter()
-insertion_sort(B)
+print(insertion_sort(B))
 toc = time.perf_counter()
 print(f"Insertion Sort without swap, ran for -  {toc - tic:0.4f} seconds")

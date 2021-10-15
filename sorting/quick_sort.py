@@ -1,38 +1,47 @@
-def quick_sort(A: list) -> None:
+"""
+Time Complexity - O(n log n), worst case - O(n square)
+Performance depends on selecting the right pivot.
+quickSort is recursive function, Divide and Conquer algorith, very Efficient for large datasets
+keywords - pivot, border, partition, median
+"""
+from typing import List
+
+
+def quick_sort(my_list: List) -> None:
     first = 0
-    last = len(A) - 1
-    my_quick_sort(A, first, last)
+    last = len(my_list) - 1
+    my_quick_sort(my_list, first, last)
 
 
-def my_quick_sort(A: list, first: int, last: int) -> None:
+def my_quick_sort(my_list: List, first: int, last: int) -> None:
     if first < last:
-        p = partition(A, first, last)
-        my_quick_sort(A, first, p - 1)
-        my_quick_sort(A, p + 1, last)
+        p = partition(my_list, first, last)
+        my_quick_sort(my_list, first, p - 1)
+        my_quick_sort(my_list, p + 1, last)
 
 
-def partition(A: list, first: int, last: int) -> int:
-    pivot_position = get_pivot(A, first, last)
-    # print("Pivot Position : ", pivot_position, ": ", A[pivot_position], end=", ")
-    pivot_value = A[pivot_position]
-    A[pivot_position], A[first] = A[first], A[pivot_position]
+def partition(my_list: List, first: int, last: int) -> int:
+    pivot_index= get_pivot(my_list, first, last)
+    # print("Pivot Position : ", pivot_index, ": ", A[pivot_index], end=", ")
+    pivot_value = my_list[pivot_index]
+    my_list[pivot_index], my_list[first] = my_list[first], my_list[pivot_index]
     border = next = first
     while next <= last:
-        if A[next] < pivot_value:
+        if my_list[next] < pivot_value:
             border += 1
-            A[next], A[border] = A[border], A[next]
+            my_list[next], my_list[border] = my_list[border], my_list[next]
         next += 1
-    A[first], A[border] = A[border], A[first]
+    my_list[first], my_list[border] = my_list[border], my_list[first]
     # print("Border : ", border, ": ", A[border])
     return border
 
 
-def get_pivot(A: list, first: int, last: int) -> int:
+def get_pivot(my_list: List, first: int, last: int) -> int:
     mid = (first + last) // 2
     from statistics import median
 
-    pivot = median([A[first], A[mid], A[last]])
-    return A.index(pivot)
+    pivot = median([my_list[first], my_list[mid], my_list[last]])
+    return my_list.index(pivot)
 
 
 from random import sample
