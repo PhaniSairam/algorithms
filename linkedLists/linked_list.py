@@ -103,23 +103,29 @@ class LinkedList(object):
             temp = temp.next
         return ispalin
 
-#TODO: Logic is not complete, re work
+    #TODO: Working now, but improve the logic
     def sort_insert(self, node):
         if self.head is None:
             self.insert(node)
         else:
-            before = self.head
+            before = None
             present = self.head
             while present is not None:
-                if node.data > present.data and present.next is not None:
-                    before = present
-                    present = present.next
-                elif node.data < present.data:
-                    before.next = node
-                    node.next = present
-                    self.head = node
+                if node.data > present.data:
+                    if present.next:
+                        before = present
+                        present = present.next
+                    else:
+                        present.next = node
+                        break
+                else:
+                    if not before:
+                        node.next = present
+                        self.head=node
+                    else:
+                        before.next = node
+                        node.next=present
                     break
-                present.next = node
 
 
 if __name__ == "__main__":
@@ -129,11 +135,11 @@ if __name__ == "__main__":
     linkedlist.insert(Node(20))
     linkedlist.insert(Node(20))
     linkedlist.insert(Node(10))
-    # linkedlist.show()
+    linkedlist.show()
     linkedlist.insertAt(Node(25), 3)
-    # linkedlist.show()
+    linkedlist.show()
     linkedlist.reverseList()
-    # linkedlist.show()
+    linkedlist.show()
     # print("Loop Detected : ", linkedlist.detectLoopUsingFloydAlgorithm())
     # print("Loop Detected : ", linkedlist.detectLoopUsingHash())
     # print("List is Palindrome : ", linkedlist.isPalindrome())
